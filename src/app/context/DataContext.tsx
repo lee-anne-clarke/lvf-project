@@ -22,7 +22,7 @@ export function DataProvider({ children }) {
         const response = await fetch("https://openlibrary.org/subjects/interior_design.json", { config });
 
         if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
+          throw new Error(`Request failed. Status code: ${response.status}`);
         }
 
         const result = await response.json();
@@ -31,9 +31,9 @@ export function DataProvider({ children }) {
           In the returned data list, the `key` property is a string that contains the book id (format: `/works/OL3343`). For better readability, create a new property that just contains the book id.
         */
         const modifiedList = result.works.map(item => {
-          let str = item.key;
-          let newStr = str.lastIndexOf("/");
-          let id = str.substring(newStr + 1);
+          const str = item.key;
+          const newStr = str.lastIndexOf("/");
+          const id = str.substring(newStr + 1);
 
           return { ...item, id };
         })

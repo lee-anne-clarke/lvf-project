@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Link from "next/link"
-import Image from "next/image";
 
 import { DataContext } from "../context/DataContext";
 import BookCover from "./BookCover";
