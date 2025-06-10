@@ -1,60 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Link from "next/link"
-import BookCover from "./BookCover"
 import Image from "next/image";
 
+import { DataContext } from '../context/DataContext';
+import BookCover from "./BookCover";
+
+
 export default function BookList() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+   const { data, isLoading, error } = useContext(DataContext);
 
-  const params = {
-    format: "json",
-    details: false,
-    limit: 12
-  }
+   console.log('data:', data)
 
-  useEffect(() => {
-    const fetchData = async () => {
-    try {
-      const response = await fetch("https://openlibrary.org/subjects/interior_design.json", { params });
+   if (isLoading) {
+    return <p>Loading...</p>;
+   }
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+   if (error) {
+    return <p>Error: {error.message}</p>;
+   }
 
-    const data = await response.json();
-      setItems(data.works);
-      console.log("data:", data);
+   if (!data) {
+    return <p>Sorry, no data available.</p>;
+   }
 
-    } catch (err) {
-      setError(err);
-
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchData();
-  }, []);
-
-if (loading) {
-  return <p>Loading...</p>;
-}
-
-if (error) {
-  return <p>Error: {error.message}</p>;
-}
-
-return (
+  return (
     <div className="grid">
- 
-      {items.map((item) => (
+
+      {data.map((item) => (
         <div className="grid__item" key={item.key}>
           <div className="grid__item-inner">
 
             <div className="cover-wrap cover-wrap--home">
-              <Link className="img-link" href={item.key}>
+              <Link className="img-link" href={`detail/${item.id}`}>
                 <BookCover 
                   coverId={item.cover_id} 
                   bookTitle={item.title} 

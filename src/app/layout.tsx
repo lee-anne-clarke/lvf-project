@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { DataProvider } from './context/DataContext';
 import "../styles/global.scss";
 
 const geistSans = Geist({
@@ -26,11 +27,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
 
-        <div className="container">
-          <h1>Books About Interior Design</h1>
-          <hr />
-          {children}
-        </div>
+        <DataProvider>
+          <div className="container">
+
+            <h1>Books About Interior Design</h1>
+            <hr />
+            {children}
+            
+          </div>
+        </DataProvider>
         
       </body>
     </html>
