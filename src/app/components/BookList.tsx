@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Link from "next/link"
 import Image from "next/image";
 
-import { DataContext } from '../context/DataContext';
+import { DataContext } from "../context/DataContext";
 import BookCover from "./BookCover";
 
 
@@ -28,7 +28,7 @@ export default function BookList() {
     <div className="grid">
 
       {data.map((item) => (
-        <div className="grid__item" key={item.key}>
+        <div className="grid__item grid__item--home" key={item.key}>
           <div className="grid__item-inner">
 
             <div className="cover-wrap cover-wrap--home">
@@ -36,12 +36,14 @@ export default function BookList() {
                 <BookCover 
                   coverId={item.cover_id} 
                   bookTitle={item.title} 
+                  imgWidth={180}
+                  imgHeight={280}
                 />
               </Link>
             </div>
 
             <div className="title-wrap">
-              <Link className="text-link" href={item.key}>
+              <Link className="text-link" href={`detail/${item.id}`}>
                 {item.title} ({item.first_publish_year})
               </Link>
             </div>

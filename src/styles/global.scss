@@ -46,19 +46,27 @@ hr {
 .grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .grid__item {
   width: 100%;
-  text-align: center;
   padding: 1.5rem 1rem;
+  margin: 0 -1rem;
+
+  @media (min-width: 767px) {
+    width: 50%;
+  }
+}
+
+.grid__item--home {
+  text-align: center;
   border-bottom: 1px solid #ccc;
 
   @media (min-width: 767px) {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    width: 50%;
     border-right: 1px solid #ccc;
 
     &:nth-child(even) {
@@ -77,10 +85,6 @@ hr {
       border-right: none
     }
   }
-}
-
-.grid__item-inner {
-
 }
 
 .cover-wrap {
@@ -104,3 +108,6 @@ hr {
 
 }
 
+.footer {
+  margin-top: 10rem;
+}
