@@ -28,21 +28,56 @@ export default function BookDetail({ params }) {
     return <p>Sorry, no data available.</p>;
   }
 
-  // Retrieve the book that matches the params id
+  // Retrieve the book from the data list
   const item = data.find(obj => obj.id === bookId)
+  console.log('item:', item)
+
+  // Remove duplicate authors
+  function removeDuplicates(arr, prop) {
+    return arr.filter((obj, index, self) =>
+      index === self.findIndex(o => o[prop] === obj[prop])
+    );
+  }
+
+  const authorsArray = removeDuplicates(item.authors, 'name');
+
 
   return (
     <div>
       <h2>{item.title}</h2>
       
-      <div className="grid">
+      <div className="grid grid--detail">
         <div className="grid__item">
-          <BookCover 
-            coverId={item.cover_id} 
-            bookTitle={item.title} 
-            imgWidth={300}
-            imgHeight={500}
-          />
+          <div className="text-center">
+            <BookCover 
+              coverId={item.cover_id} 
+              bookTitle={item.title} 
+              imgWidth={330}
+              imgHeight={500}
+            />
+          </div>
+        </div>
+
+        <div className="grid__item">
+          <ul>
+            <li>
+              <b>Original Publication Date:</b> {item.first_publish_year}
+            </li>
+
+            <li>
+              <b>Author(s):</b> 
+              <ul>
+                {authorsArray.map((author) => (
+                  <li key={author.key}>{author.name}</li>
+                ))}
+              </ul>
+            </li>
+
+            <li>
+              <b>Number of Editions:</b> {item.edition_count}
+            </li>
+
+          </ul>
         </div>
       </div>
 

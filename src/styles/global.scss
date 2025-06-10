@@ -10,6 +10,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 .text-link {
   color: inherit;
   text-decoration: none;
@@ -23,19 +25,33 @@ body {
 
 .img-link {
   transition: all 0.2s ease-in-out;
-}
 
-.img-link:hover {
-  opacity: 0.5;
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 h1 {
   margin-bottom: 1rem;
 }
 
+h2 {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0.5rem;
+}
+
 hr {
   margin-bottom: 1rem;
 }
+
+li ul li {
+  margin-left: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
 
 .container {
   max-width: 1024px;
@@ -46,16 +62,19 @@ hr {
 .grid {
   display: flex;
   flex-wrap: wrap;
+}
+
+.grid--home {
   justify-content: space-between;
 }
 
 .grid__item {
   width: 100%;
   padding: 1.5rem 1rem;
-  margin: 0 -1rem;
 
   @media (min-width: 767px) {
     width: 50%;
+    margin: 0 -1rem;
   }
 }
 
@@ -87,6 +106,11 @@ hr {
   }
 }
 
+.footer {
+  margin-top: 3rem;
+}
+
+
 .cover-wrap {
   display: block;
   padding-bottom: 1rem;
@@ -95,8 +119,8 @@ hr {
 .book-cover {
   display: inline-block;
   max-width: 100%;
-  height: 100%;
-  box-shadow: 8px 10px 5px -4px rgba(212,212,212,0.75);
+  max-height: 100%;
+  box-shadow: 8px 10px 5px -4px rgba(212,212,212,0.8);
 }
 
 .cover-wrap--home .book-cover {
@@ -104,10 +128,3 @@ hr {
   border: 1px dotted #ccc;
 }
 
-.title-wrap {
-
-}
-
-.footer {
-  margin-top: 10rem;
-}

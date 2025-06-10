@@ -28,7 +28,7 @@ export function DataProvider({ children }) {
         const result = await response.json();
 
         /* 
-          In the data list, the `key` property is a string that contains the book id (format: `/works/OL3343`). For better readability, create a new property that just contains the book id.
+          In the returned data list, the `key` property is a string that contains the book id (format: `/works/OL3343`). For better readability, create a new property that just contains the book id.
         */
         const modifiedList = result.works.map(item => {
           let str = item.key;

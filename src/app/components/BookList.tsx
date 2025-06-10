@@ -25,7 +25,7 @@ export default function BookList() {
   }
 
   return (
-    <div className="grid">
+    <div className="grid grid--home">
 
       {data.map((item) => (
         <div className="grid__item grid__item--home" key={item.key}>

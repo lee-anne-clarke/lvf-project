@@ -8,8 +8,8 @@ export default function BookCover(props) {
         className="book-cover" 
         width={props.imgWidth}
         height={props.imgHeight}
-				src={`https://covers.openlibrary.org/b/id/${props.coverId}-L.jpg`} 
-				alt={`${props.bookTitle} cover`} 
+		src={`https://covers.openlibrary.org/b/id/${props.coverId}-L.jpg`} 
+		alt={`${props.bookTitle} cover`} 
         priority
       />
   );
