@@ -8,15 +8,15 @@ const config = {
   limit: 12
 }
 
-// Create a context so that data can be used in multiple files
 export const DataContext = createContext(null);
 
 export function DataProvider({ children }) {
   const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(null);
 
   useEffect(() => {
+    // Fetch the book list data
     const fetchData = async () => {
       try {
         const response = await fetch("https://openlibrary.org/subjects/interior_design.json", { config });
@@ -27,10 +27,13 @@ export function DataProvider({ children }) {
 
         const result = await response.json();
 
+        /* 
+          In the data list, the `key` property is a string that contains the book id (format: `/works/OL3343`). For better readability, create a new property that just contains the book id.
+        */
         const modifiedList = result.works.map(item => {
           let str = item.key;
-          let newString = str.lastIndexOf("/");
-          let id = str.substring(newString + 1);
+          let newStr = str.lastIndexOf("/");
+          let id = str.substring(newStr + 1);
 
           return { ...item, id };
         })
@@ -38,10 +41,10 @@ export function DataProvider({ children }) {
         setData(modifiedList);
 
       } catch (error) {
-        setError(error);
+        setHasError(error);
 
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -50,7 +53,7 @@ export function DataProvider({ children }) {
 
 
   return (
-    <DataContext value={{ data, isLoading, error }}>
+    <DataContext value={{ data, isLoading, hasError }}>
       {children}
     </DataContext>
   );

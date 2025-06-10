@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: "",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,7 +34,7 @@ export default function RootLayout({
             <h1>Books About Interior Design</h1>
             <hr />
             {children}
-            
+
           </div>
         </DataProvider>
         

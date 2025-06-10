@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
+
 
 export default function BookCover({coverId, bookTitle}) {
 	return (
@@ -10,6 +11,6 @@ export default function BookCover({coverId, bookTitle}) {
 				src={`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`} 
 				alt={`${bookTitle} cover`} 
         priority
-			/>
+      />
   );
 }

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext, use } from "react";
 import Link from "next/link"
+import { DataContext } from '../../context/DataContext';
 import BookCover from "./BookCover";
 
 
-export default async function BookDetail({ params }: { params: { id: string } }) {
-  const { id } = await params;
+export default function BookDetail({ params }) {
+  const { id } = use(params)
+
+  const { data, isLoading, hasError } = useContext(DataContext);
 
   return (
     <div>

@@ -7,21 +7,22 @@ import BookCover from "./BookCover";
 
 
 export default function BookList() {
-   const { data, isLoading, error } = useContext(DataContext);
+  // Context that contains the fetch data
+  const { data, isLoading, hasError } = useContext(DataContext);
 
-   console.log('data:', data)
+  console.log('data:', data)
 
-   if (isLoading) {
+  if (isLoading) {
     return <p>Loading...</p>;
-   }
+  }
 
-   if (error) {
-    return <p>Error: {error.message}</p>;
-   }
+  if (hasError) {
+    return <p>Error: {hasError.message}</p>;
+  }
 
-   if (!data) {
+  if (!data) {
     return <p>Sorry, no data available.</p>;
-   }
+  }
 
   return (
     <div className="grid">
@@ -48,7 +49,7 @@ export default function BookList() {
           </div>
         </div>
       ))}
-   
+
     </div>
   );
 }
