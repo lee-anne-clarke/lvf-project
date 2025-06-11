@@ -31,7 +31,7 @@ export default function BookDetail({ params }) {
   const item = data.find(obj => obj.id === bookId)
   console.log('item:', item)
 
-  // Remove duplicate authors
+  // Remove duplicate author names
   function removeDuplicates(arr, prop) {
     return arr.filter((obj, index, self) =>
       index === self.findIndex(o => o[prop] === obj[prop])
