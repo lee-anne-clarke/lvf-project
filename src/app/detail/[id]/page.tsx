@@ -33,7 +33,6 @@ export default function BookDetail() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const item:any = data.find((obj: { id: string; }) => obj.id === bookId)
-  console.log('item:', item)
 
   // Remove duplicate author names
   function removeDuplicates(arr:[], prop:string) {

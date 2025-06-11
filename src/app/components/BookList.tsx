@@ -9,8 +9,6 @@ export default function BookList() {
   // Access the context that contains the fetch data
   const { data, isLoading, errorMsg } = useContext(DataContext);
 
-  console.log('data:', data)
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
