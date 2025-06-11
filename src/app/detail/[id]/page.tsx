@@ -9,14 +9,13 @@ import BookCover from "../../components/BookCover";
 
 
 export default function BookDetail() {
-  // Context that contains the fetch data
+  // Access the context that contains the fetch data
   const { data, isLoading, errorMsg } = useContext(DataContext);
 
-  // Book id
+  // Extract the `params` object containing the book id
   const params = useParams<{ id: string; }>();
-  console.log('params.id:', params.id);
-  
   const bookId = params.id;
+
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -30,7 +29,7 @@ export default function BookDetail() {
     return <p>Sorry, no data available.</p>;
   } 
 
-  // Retrieve the book from the data list
+  // Retrieve the specified book from the data list
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const item:any = data.find((obj: { id: string; }) => obj.id === bookId)
@@ -46,7 +45,7 @@ export default function BookDetail() {
   const authorsArray = removeDuplicates(item.authors, "name");
 
   return (
-    <div>
+    <article>
       <h2>{item.title}</h2>
       
       <div className="grid grid--detail">
@@ -88,6 +87,6 @@ export default function BookDetail() {
         <Link className="text-link" href="/">Return home</Link>
       </footer>
 
-    </div>
+    </article>
   );
 }

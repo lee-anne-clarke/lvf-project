@@ -6,7 +6,7 @@ import BookCover from "./BookCover";
 
 
 export default function BookList() {
-  // Context that contains the fetch data
+  // Access the context that contains the fetch data
   const { data, isLoading, errorMsg } = useContext(DataContext);
 
   console.log('data:', data)
@@ -28,34 +28,43 @@ export default function BookList() {
   }
 
   return (
-    <div className="grid grid--home">
+    <main>
+      <div className="grid grid--home">
 
-      {data.map((item: BookItemObject) => (
-        <div className="grid__item grid__item--home" key={item.key}>
-          <div className="grid__item-inner">
+        {data.map((item: BookItemObject) => (
+          <div className="grid__item grid__item--home" key={item.key}>
+            <div className="grid__item-inner">
 
-            <div className="cover-wrap cover-wrap--home">
-              <Link className="img-link" href={`detail/${item.id}`}>
-                <BookCover 
-                  coverId={item.cover_id} 
-                  bookTitle={item.title} 
-                  imgWidth={180}
-                  imgHeight={280}
-                />
-              </Link>
+              <div className="cover-wrap cover-wrap--home">
+                <Link className="img-link" href={`detail/${item.id}`}>
+                  <BookCover 
+                    coverId={item.cover_id} 
+                    bookTitle={item.title} 
+                    imgWidth={180}
+                    imgHeight={280}
+                  />
+                </Link>
+              </div>
+
+              <div className="title-wrap">
+                <Link className="text-link" href={`detail/${item.id}`}>
+                  {item.title} ({item.first_publish_year})
+                </Link>
+              </div>
+
             </div>
-
-            <div className="title-wrap">
-              <Link className="text-link" href={`detail/${item.id}`}>
-                {item.title} ({item.first_publish_year})
-              </Link>
-            </div>
-
           </div>
-        </div>
-      ))}
+        ))}
 
-    </div>
+      </div>
+
+      <footer className="footer">
+        <p>API sources:</p> 
+        <p>
+          <Link className="text-link" href="https://openlibrary.org/developers/api" target="_blank">Open Library APIs</Link>
+        </p>
+      </footer>
+    </main>
   );
 }
 

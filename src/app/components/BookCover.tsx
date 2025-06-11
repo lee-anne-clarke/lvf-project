@@ -15,8 +15,8 @@ export default function BookCover({imgWidth, imgHeight, coverId, bookTitle}: Boo
         className="book-cover" 
         width={imgWidth}
         height={imgHeight}
-		src={`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`} 
-		alt={`${bookTitle} cover`} 
+        src={`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`} 
+        alt={`${bookTitle} cover`} 
         priority
       />
   );

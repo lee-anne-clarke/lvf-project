@@ -5,7 +5,7 @@ const config = {
   limit: 12
 }
 
-// Fetch the book list data
+// Fetch call for the book list data
 const fetchData = async (url:string, config:object) => {
   try {
     const response = await fetch(fetchUrl, config);
@@ -24,7 +24,7 @@ const fetchData = async (url:string, config:object) => {
 };
 
 
-// Test
+// Tests
 describe("fetchData", () => {
  beforeEach(() => {
    global.fetch = jest.fn();
@@ -35,7 +35,8 @@ describe("fetchData", () => {
  });
 
  it("should fetch data successfully", async () => {
-   fetch.mockResolvedValue({
+  // Inform TypeScript that this is a mocked function
+  (fetch as jest.Mock).mockResolvedValue({
      json: () => Promise.resolve({ data: "mocked data" }),
      ok: true,
      status: 200,
@@ -47,11 +48,12 @@ describe("fetchData", () => {
  });
 
  it("should handle errors during fetch", async () => {
-   fetch.mockResolvedValue({
+    (fetch as jest.Mock).mockResolvedValue({
      ok: false,
      status: 404,
    });
    await expect(fetchData(fetchUrl, config)).rejects.toThrow("Request failed. Status code: 404");
  });
 });
+
 

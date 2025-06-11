@@ -8,6 +8,7 @@ interface DataContextProps {
   errorMsg: unknown
 }
 
+// Set the context properties & initial values
 export const DataContext = createContext<DataContextProps>({
   data: null,
   isLoading: true,
@@ -37,10 +38,9 @@ export const DataProvider: React.FC<PropsWithChildren> = ({ children }) => {
         }
 
         const result = await response.json();
-        console.log('result:', result)
 
         /* 
-          In the returned data list, the `key` property is a string that contains the book id (format: `/works/OL3343`). For better readability, create a new property that just contains the book id.
+          In the returned data list, the `key` property is a string that contains the book id (format: `/works/OL3343`). For better readability, create a new property called `id` that just contains the book id.
         */
         const modifiedList = result.works.map((item: { key:string }) => {
           const str = item.key;
