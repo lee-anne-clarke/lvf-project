@@ -53,8 +53,8 @@ export default function BookDetail() {
             <BookCover 
               coverId={item.cover_id} 
               bookTitle={item.title} 
-              imgWidth={330}
-              imgHeight={500}
+              imgWidth={250}
+              imgHeight={320}
             />
           </div>
         </div>

@@ -39,7 +39,7 @@ export default function BookList() {
                     coverId={item.cover_id} 
                     bookTitle={item.title} 
                     imgWidth={180}
-                    imgHeight={280}
+                    imgHeight={270}
                   />
                 </Link>
               </div>
