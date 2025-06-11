@@ -6,8 +6,7 @@ import { DataProvider } from "./context/DataContext";
 
 // Metadata
 export const metadata: Metadata = {
-  title: "Livefront Project",
-  description: "Books About Interior Design",
+  title: "Books About Interior Design - Livefront Project"
 };
 
 
@@ -24,8 +23,8 @@ export default function RootLayout({
           <div className="container">
 
             <header>
-              <h1>Books About Interior Design</h1>
-              <hr />
+              <h1 className="h1">Books About Interior Design</h1>
+              <hr className="hr" />
             </header>
             
             {children}

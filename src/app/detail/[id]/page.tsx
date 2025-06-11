@@ -46,7 +46,7 @@ export default function BookDetail() {
 
   return (
     <article>
-      <h2>{item.title}</h2>
+      <h2 className="h2">{item.title}</h2>
       
       <div className="grid grid--detail">
         <div className="grid__item">
@@ -70,7 +70,7 @@ export default function BookDetail() {
               <b>Author(s):</b> 
               <ul>
                 {authorsArray.map((author: { key:string, name:string }) => (
-                  <li key={author.key}>{author.name}</li>
+                  <li key={author.key} className="list-item-lvl2">{author.name}</li>
                 ))}
               </ul>
             </li>

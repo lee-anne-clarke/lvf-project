@@ -6,7 +6,7 @@ const config = {
 }
 
 // Fetch call for the book list data
-const fetchData = async (url:string, config:object) => {
+const fetchData = async (_url:string, config:object) => {
   try {
     const response = await fetch(fetchUrl, config);
 
