@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 To run the tests:
 
 ```bash
-npm run dev
+npm run test
 ```
 
 ## Open Library APIs
