@@ -7,7 +7,7 @@ import BookCover from "./BookCover";
 
 export default function BookList() {
   // Context that contains the fetch data
-  const { data, isLoading, hasError } = useContext(DataContext);
+  const { data, isLoading, errorMsg } = useContext(DataContext);
 
   console.log('data:', data)
 
@@ -15,18 +15,22 @@ export default function BookList() {
     return <p>Loading...</p>;
   }
 
-  if (hasError) {
-    return <p>Error: {hasError.message}</p>;
+  if (errorMsg) {
+    return <p>Sorry, an error has occurred. Please try again.</p>;
   }
 
   if (!data) {
     return <p>Sorry, no data available.</p>;
   }
 
+  interface BookItemObject {
+    [key: string]: string;
+  }
+
   return (
     <div className="grid grid--home">
 
-      {data.map((item) => (
+      {data.map((item: BookItemObject) => (
         <div className="grid__item grid__item--home" key={item.key}>
           <div className="grid__item-inner">
 

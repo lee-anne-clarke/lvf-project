@@ -6,7 +6,7 @@ import { DataProvider } from "./context/DataContext";
 
 export const metadata: Metadata = {
   title: "Livefront Project",
-  description: "",
+  description: "Books About Interior Design",
 };
 
 

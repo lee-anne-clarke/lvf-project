@@ -2,14 +2,21 @@ import React from "react";
 import Image from "next/image";
 
 
-export default function BookCover(props) {
+interface BookCoverProps {
+  imgWidth: number,
+  imgHeight: number,
+  coverId: string,
+  bookTitle: string
+}
+
+export default function BookCover({imgWidth, imgHeight, coverId, bookTitle}: BookCoverProps) {
 	return (
     <Image
         className="book-cover" 
-        width={props.imgWidth}
-        height={props.imgHeight}
-		src={`https://covers.openlibrary.org/b/id/${props.coverId}-L.jpg`} 
-		alt={`${props.bookTitle} cover`} 
+        width={imgWidth}
+        height={imgHeight}
+		src={`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`} 
+		alt={`${bookTitle} cover`} 
         priority
       />
   );

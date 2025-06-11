@@ -1,45 +1,49 @@
 "use client";
 
-import React, { use, useContext } from "react";
+import React, { useContext } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link"
 
 import { DataContext } from "../../context/DataContext";
 import BookCover from "../../components/BookCover";
 
 
-export default function BookDetail({ params }) {
+export default function BookDetail() {
   // Context that contains the fetch data
-  const { data, isLoading, hasError } = useContext(DataContext);
+  const { data, isLoading, errorMsg } = useContext(DataContext);
 
   // Book id
-  const { id } = use(params);
-  const bookId = {id}.id;
+  const params = useParams<{ id: string; }>();
+  console.log('params.id:', params.id);
+  
+  const bookId = params.id;
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (hasError) {
-    return <p>Error: {hasError.message}</p>;
+  if (errorMsg) {
+    return <p>Sorry, an error has occurred. Please try again.</p>;
   }
 
   if (!data) {
     return <p>Sorry, no data available.</p>;
-  }
+  } 
 
   // Retrieve the book from the data list
-  const item = data.find(obj => obj.id === bookId)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const item:any = data.find((obj: { id: string; }) => obj.id === bookId)
   console.log('item:', item)
 
   // Remove duplicate author names
-  function removeDuplicates(arr, prop) {
+  function removeDuplicates(arr:[], prop:string) {
     return arr.filter((obj, index, self) =>
       index === self.findIndex(o => o[prop] === obj[prop])
     );
   }
 
-  const authorsArray = removeDuplicates(item.authors, 'name');
-
+  const authorsArray = removeDuplicates(item.authors, "name");
 
   return (
     <div>
@@ -47,7 +51,7 @@ export default function BookDetail({ params }) {
       
       <div className="grid grid--detail">
         <div className="grid__item">
-          <div className="text-center">
+          <div className="cover-wrap--detail">
             <BookCover 
               coverId={item.cover_id} 
               bookTitle={item.title} 
@@ -66,7 +70,7 @@ export default function BookDetail({ params }) {
             <li>
               <b>Author(s):</b> 
               <ul>
-                {authorsArray.map((author) => (
+                {authorsArray.map((author: { key:string, name:string }) => (
                   <li key={author.key}>{author.name}</li>
                 ))}
               </ul>
@@ -79,7 +83,6 @@ export default function BookDetail({ params }) {
           </ul>
         </div>
       </div>
-
 
       <footer className="footer">
         <Link className="text-link" href="/">Return home</Link>
